@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -e
+
+mkdir -p bin
+rm -f bin/*
+
+echo "Compiling External Priority (EP) scheduler..."
+g++ -std=c++17 -Wall -Wextra -O2 \
+    interrupts_student1_student2_EP.cpp \
+    -o bin/EP
+
+echo "Compiling Round Robin (RR) scheduler..."
+g++ -std=c++17 -Wall -Wextra -O2 \
+    interrupts_student1_student2_RR.cpp \
+    -o bin/RR
+
+echo "Compiling combined EP_RR scheduler..."
+g++ -std=c++17 -Wall -Wextra -O2 \
+    interrupts_student1_student2_EP_RR.cpp \
+    -o bin/EP_RR
+
+echo "Compiling standalone main test driver..."
+g++ -std=c++17 -Wall -Wextra -O2 \
+    main.cpp \
+    -o bin/main
+
+echo "✅ Build finished. Binaries in ./bin:"
+ls bin
